@@ -1,10 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import cors from "cors"; // Import CORS middleware
+import cors from "cors"; 
 
 import productRoutes from "./routes/productRoutes.js";
-import contributionRoutes from "./routes/contributionRoutes.js"; // Import your contribution routes
+import contributionRoutes from "./routes/contributionRoutes.js"; 
 
 dotenv.config();
 
@@ -26,8 +26,23 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
+app.get("/ping", (req, res) => {
+  console.log("Ping endpoint hit");
+  res.status(200).send("Pong");
+});
+
+cron.schedule("*/10 * * * *", () => {
+  https
+    .get("https://crowdfunding-backend-3wkh.onrender.com/ping", (res) => {
+      console.log(`Pinged server, status code: ${res.statusCode}`);
+    })
+    .on("error", (err) => {
+      console.error("Error pinging server:", err);
+    });
+});
+
 app.use("/api/products", productRoutes);
-app.use("/api/contributions", contributionRoutes); // Use the contribution routes here
+app.use("/api/contributions", contributionRoutes); 
 
 // Start the Server
 app.listen(PORT, () => {
