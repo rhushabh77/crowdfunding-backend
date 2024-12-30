@@ -1,7 +1,8 @@
 {
   "version": 2,
   "functions": {
-    "server.js": {
+    "api/server.js": {
+      "runtime": "nodejs22.x",
       "maxDuration": 60,
       "memory": 1024
     }
@@ -9,7 +10,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "/api/server.js"
     }
   ]
 }
