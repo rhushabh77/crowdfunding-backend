@@ -33,15 +33,15 @@ app.get("/ping", (req, res) => {
   res.status(200).send("Pong");
 });
 
-cron.schedule("*/10 * * * *", () => {
-  https
-    .get("https://crowdfunding-backend-3wkh.onrender.com/ping", (res) => {
-      console.log(`Pinged server, status code: ${res.statusCode}`);
-    })
-    .on("error", (err) => {
-      console.error("Error pinging server:", err);
-    });
-});
+// cron.schedule("*/10 * * * *", () => {
+//   https
+//     .get("https://crowdfunding-backend-3wkh.onrender.com/ping", (res) => {
+//       console.log(`Pinged server, status code: ${res.statusCode}`);
+//     })
+//     .on("error", (err) => {
+//       console.error("Error pinging server:", err);
+//     });
+// });
 
 app.use("/api/products", productRoutes);
 app.use("/api/contributions", contributionRoutes); 
